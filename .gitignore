@@ -1,0 +1,17 @@
+node_modules/
+.env
+.DS_Store
+coverage/
+*.log
+SOLUTION.md
+solutions/
+
+2-js-datatypes-foundation/
+3-js-datatypes-Intermediate/
+4-js-loops/
+5-js-functions/
+6-js-async-oops/
+7-js-DOM/
+8-auth-API/
+9-first-CRUD-App/
+10-image-upload-api/
