@@ -79,5 +79,47 @@ export function calculateCoffeePrice(size, type, extras = {}) {
     price += 0.75;
   }
 
+  //* return total price
   return Number(price.toFixed(2));
 }
+
+//? Clean and maintainable code
+/*
+export function calculateCoffeePrice(size, type, extras = {}) {
+  let price;
+
+  //* calculate price on size basis
+  const sizePrices = {
+    small: 3,
+    medium: 4,
+    large: 5,
+  };
+  price = sizePrices[size];
+
+  //* check for the invalid input
+  if (price === undefined) return -1;
+
+  //* calculate price on type basis
+  const typePrices = {
+    regular: 0,
+    latte: 1,
+    cappuccino: 1.5,
+    mocha: 2,
+  };
+  const addOnPrice = typePrices[type];
+  if (addOnPrice === undefined) return -1;
+  price += addOnPrice;
+
+  //* get extra price
+  if (extras.whippedCream) {
+    price += 0.5;
+  }
+  if (extras.extraShot) {
+    price += 0.75;
+  }
+
+  //* return total price
+  return Number(price.toFixed(2));
+}
+
+*/
