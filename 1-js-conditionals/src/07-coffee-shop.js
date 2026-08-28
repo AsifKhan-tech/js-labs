@@ -31,5 +31,53 @@
  * @returns {number} Total price or -1 for invalid input
  */
 export function calculateCoffeePrice(size, type, extras = {}) {
-  // Your code here
+  //* Understanding the problem
+  //? A) calculate the total price of a coffee order
+  //? B) On the basis of size, type, and extras
+
+  //* break it into sub-problems
+  //? check for invalid inputs
+  //? get base price, check for base price
+  //? get add-on price check for type of coffee order
+  //? get extra price for (optional-extras)
+
+  if (size !== "small" && size !== "medium" && size !== "large") return -1;
+  if (
+    type !== "regular" &&
+    type !== "latte" &&
+    type !== "cappuccino" &&
+    type !== "mocha"
+  )
+    return -1;
+
+  let price;
+  //* calculate price on size basis
+  if (size === "small") {
+    price = 3;
+  } else if (size === "medium") {
+    price = 4;
+  } else if (size === "large") {
+    price = 5;
+  }
+
+  //* calculate price on type basis
+  if (type === "regular") {
+    price += 0;
+  } else if (type === "latte") {
+    price += 1;
+  } else if (type === "cappuccino") {
+    price += 1.5;
+  } else if (type === "mocha") {
+    price += 2;
+  }
+
+  //* get extra price
+  if (extras.whippedCream) {
+    price += 0.5;
+  }
+  if (extras.extraShot) {
+    price += 0.75;
+  }
+
+  return Number(price.toFixed(2));
 }
