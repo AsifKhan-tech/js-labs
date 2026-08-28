@@ -26,5 +26,28 @@
  * @returns {number} Total tax amount owed
  */
 export function calculateTax(income) {
-  // Your code here
+  //? Understanding the problem
+  //* A) calculate the tax according to the income
+
+  //! Break it into sub-problems
+  //* A) check income bracket
+  //* B) calculate tax
+
+  if (income === 0 || income < 0) return -1;
+
+  let tax;
+
+  if (income > 0 && income <= 10_000) {
+    tax = (income * 0) / 100;
+  } else if (income >= 10_001 && income <= 30_000) {
+    tax = (income * 10) / 100;
+  } else if (income >= 30_001 && income <= 70_000) {
+    tax = (income * 20) / 100;
+  } else {
+    tax = (income * 30) / 100;
+  }
+
+  return tax;
 }
+
+// console.log(calculateTax(20_000));
