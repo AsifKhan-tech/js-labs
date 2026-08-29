@@ -42,16 +42,14 @@ export function calculateTax(income) {
     tax = 0;
   }
 
-  if (income > 10_000) {
-    tax += ((income - 10_000) * 10) / 100;
+  if (income <= 30_000) {
+    tax = ((income - 1000) * 10) / 100;
   }
 
-  if (income > 30_000) {
-    tax += ((income - 30_000) * 20) / 100;
-  }
-
-  if (income > 70_000) {
-    tax += ((income - 70_000) * 30) / 100;
+  if (income <= 70_000) {
+    tax = (2000 + (income - 30_000) * 20) / 100;
+  } else {
+    tax = (1000 + (income - 70_000) * 30) / 100;
   }
 
   return tax;
