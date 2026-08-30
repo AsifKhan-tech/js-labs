@@ -27,32 +27,40 @@
  */
 export function calculateTax(income) {
   //? Understanding the problem
-  //* A) calculate the tax according to the income
+  //* A) calculate the progressive tax according to the income
+  //* B) progressive tax:-taxed on the income portions / slices
 
   //! Break it into sub-problems
-  //* A) check income bracket
-  //* B) calculate tax of every bracket and total it
-  //* B)
+  //* A) calculate minValue
+  //* B) calculate range / portion / slice / taxBracket
+  //* C) calculate tax of every bracket and sum it
 
-  if (income <= 0) return 0;
+  if (income <= 0 || income <= 10_000) return 0;
+  let tax = 0;
 
-  let tax;
+  if (income > 10_000) {
+    // const taxBracket = Math.min(income, 30_000) - 10_000;
 
-  if (income <= 10_000) {
-    tax = 0;
+    const minValue = income < 30_000 ? income : 30_000;
+    const taxBracket = minValue - 10_000;
+    tax = (taxBracket * 10) / 100;
   }
 
-  if (income <= 30_000) {
-    tax = ((income - 1000) * 10) / 100;
+  if (income > 30_000) {
+    // const taxBracket = Math.min(income, 70_000) - 30_000;
+
+    const minValue = income < 70_000 ? income : 70_000;
+    const taxBracket = minValue - 30_000;
+    tax += (taxBracket * 20) / 100;
   }
 
-  if (income <= 70_000) {
-    tax = (2000 + (income - 30_000) * 20) / 100;
-  } else {
-    tax = (1000 + (income - 70_000) * 30) / 100;
-  }
+  if (income > 70_000) {
+    // const taxBracket = income - 70_000;
 
+    const taxBracket = income - 70_000;
+    tax += (taxBracket * 30) / 100;
+  }
   return tax;
 }
 
-console.log(calculateTax(100_000));
+console.log(calculateTax(10_000));
