@@ -26,5 +26,64 @@
  * @returns {string} "weak", "medium", "strong", or "very strong"
  */
 export function checkPasswordStrength(password) {
-  // Your code here
+  //? Understanding the problem
+  //* A) check password strength based on criteria
+
+  //! Break it into sub-problems
+  //? We should have a variable to count the criteria
+
+  //* A) check password length
+  //* B) check capital letters
+  //* C) check for small letters
+  //* D) check for numbers (0-9)
+  //* E) check for special characters
+
+  if (password === "" || typeof password !== "string") return "weak";
+
+  let count = 0;
+  if (password.length >= 8) count++;
+
+  const upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for (const letter of upperCaseLetters) {
+    if (password.includes(letter)) {
+      count++;
+      break;
+    }
+  }
+
+  const lowerCaseLetters = "abcdefghijklmopqrstuvwxyz";
+  for (const letter of lowerCaseLetters) {
+    if (password.includes(letter)) {
+      count++;
+      break;
+    }
+  }
+
+  const numbers = "0123456789";
+  for (const number of numbers) {
+    if (password.includes(number)) {
+      count++;
+      break;
+    }
+  }
+
+  const specialChracters = "!@#$%^&*()_+-=[]{}|;:,.<>?";
+  for (const character of specialChracters) {
+    if (password.includes(character)) {
+      count++;
+      break;
+    }
+  }
+
+  if (count <= 1) {
+    return "weak";
+  } else if (count <= 3) {
+    return "medium";
+  } else if (count === 4) {
+    return "strong";
+  } else {
+    return "very strong";
+  }
 }
+
+console.log(checkPasswordStrength("#I.dev-1"));
