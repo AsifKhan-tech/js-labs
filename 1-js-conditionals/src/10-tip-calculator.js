@@ -30,5 +30,56 @@
  * @returns {{ tipPercentage: number, tipAmount: number, totalAmount: number } | null}
  */
 export function calculateTip(billAmount, serviceRating) {
-  // Your code here
+  //? Understanding the problem:
+  //* A) Calculate tip based on service rating
+  //* B) return an object with tipPercentage, tipAmount, and totalAmount
+
+  //! Break down the problem into sub-problems:
+  //* A) check if billAmount is 0 or negative, return null
+  if (billAmount <= 0) return null;
+  //* B) check if serviceRating is not an integer from 1 to 5, return null
+  if (
+    typeof serviceRating !== "number" ||
+    serviceRating < 1 ||
+    serviceRating > 5 ||
+    serviceRating % 1 !== 0
+  )
+    return null;
+  //* C) calculate tip based on service rating
+  let tipPercentage;
+  let tipAmount;
+  let totalAmount;
+  if (serviceRating === 1) {
+    return {
+      tipPercentage: 5,
+      tipAmount: ((billAmount * 5) / 100).toFixed(2),
+      totalAmount: (billAmount + tipAmount).toFixed(2),
+    };
+  } else if (serviceRating === 2) {
+    return {
+      tipPercentage: 10,
+      tipAmount: ((billAmount * 10) / 100).toFixed(2),
+      totalAmount: (billAmount + tipAmount).toFixed(2),
+    };
+  } else if (serviceRating === 3) {
+    return {
+      tipPercentage: 15,
+      tipAmount: ((billAmount * 15) / 100).toFixed(2),
+      totalAmount: (billAmount + tipAmount).toFixed(2),
+    };
+  } else if (serviceRating === 4) {
+    return {
+      tipPercentage: 20,
+      tipAmount: ((billAmount * 20) / 100).toFixed(2),
+      totalAmount: (billAmount + tipAmount).toFixed(2),
+    };
+  } else if (serviceRating === 5) {
+    return {
+      tipPercentage: 25,
+      tipAmount: ((billAmount * 25) / 100).toFixed(2),
+      totalAmount: (billAmount + tipAmount).toFixed(2),
+    };
+  }
 }
+
+console.log(calculateTip(50, 4));
