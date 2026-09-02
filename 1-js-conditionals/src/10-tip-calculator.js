@@ -50,34 +50,53 @@ export function calculateTip(billAmount, serviceRating) {
   let tipAmount;
   let totalAmount;
   if (serviceRating === 1) {
+    tipPercentage = 5;
+    tipAmount = Number(((billAmount * tipPercentage) / 100).toFixed(2));
+    totalAmount = Number((billAmount + tipAmount).toFixed(2));
     return {
-      tipPercentage: 5,
-      tipAmount: ((billAmount * 5) / 100).toFixed(2),
-      totalAmount: (billAmount + tipAmount).toFixed(2),
+      tipPercentage,
+      tipAmount,
+      totalAmount,
     };
   } else if (serviceRating === 2) {
+    tipPercentage = 10;
+    tipAmount = Number(((billAmount * tipPercentage) / 100).toFixed(2));
+    totalAmount = Number((billAmount + tipAmount).toFixed(2));
+
     return {
-      tipPercentage: 10,
-      tipAmount: ((billAmount * 10) / 100).toFixed(2),
-      totalAmount: (billAmount + tipAmount).toFixed(2),
+      tipPercentage,
+      tipAmount,
+      totalAmount,
     };
   } else if (serviceRating === 3) {
+    tipPercentage = 15;
+    tipAmount = Number(((billAmount * tipPercentage) / 100).toFixed(2));
+    totalAmount = Number((billAmount + tipAmount).toFixed(2));
+
     return {
-      tipPercentage: 15,
-      tipAmount: ((billAmount * 15) / 100).toFixed(2),
-      totalAmount: (billAmount + tipAmount).toFixed(2),
+      tipPercentage,
+      tipAmount,
+      totalAmount,
     };
   } else if (serviceRating === 4) {
+    tipPercentage = 20;
+    tipAmount = Number(((billAmount * tipPercentage) / 100).toFixed(2));
+    totalAmount = Number((billAmount + tipAmount).toFixed(2));
+
     return {
-      tipPercentage: 20,
-      tipAmount: ((billAmount * 20) / 100).toFixed(2),
-      totalAmount: (billAmount + tipAmount).toFixed(2),
+      tipPercentage,
+      tipAmount,
+      totalAmount,
     };
   } else if (serviceRating === 5) {
+    tipPercentage = 25;
+    tipAmount = Number(((billAmount * tipPercentage) / 100).toFixed(2));
+    totalAmount = Number((billAmount + tipAmount).toFixed(2));
+
     return {
-      tipPercentage: 25,
-      tipAmount: ((billAmount * 25) / 100).toFixed(2),
-      totalAmount: (billAmount + tipAmount).toFixed(2),
+      tipPercentage,
+      tipAmount,
+      totalAmount,
     };
   }
 }
