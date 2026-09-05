@@ -32,6 +32,20 @@
  * @param {string} vehicleType - "car", "motorcycle", or "bus"
  * @returns {number} Parking fee or -1 for invalid input
  */
+const vechiles = {
+  car: "car",
+  motorcycle: "motorcycle",
+  bus: "bus",
+};
+
 export function calculateParkingFee(hours, vehicleType) {
-  // Your code here
+  if (hours <= 0) return -1;
+  if (!vechiles[vehicleType]) return -1;
+
+  return (hours, vehicleType);
 }
+console.log(calculateParkingFee(10, "motorcycle"));
+
+/**
+ * Only single value can be returned from a function. If there is need to return multiple values from the function, return an object or an array.
+ */
