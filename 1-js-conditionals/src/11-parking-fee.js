@@ -42,9 +42,19 @@ export function calculateParkingFee(hours, vehicleType) {
   if (hours <= 0) return -1;
   if (!vechiles[vehicleType]) return -1;
 
-  return (hours, vehicleType);
+  //? Understand the problem
+  //* A) calculate parking fees based on the vechicle type and hours
+  //* B) daily maximum charges for each vechile, limit cann't exceed it
+  //* C) partial hours are rounded up (1.75 hours -> 2 hours)
+
+  //? Break it down into sub-problems
+  //* A) calculate the parking fees based on hours and vechile type
+
+  if (hours <= 1 && vehicleType === vechiles.car) return 5;
+  if (hours <= 1 && vehicleType === vechiles.motorcycle) return 3;
+  if (hours <= 1 && vehicleType === vechiles.bus) return 10;
 }
-console.log(calculateParkingFee(10, "motorcycle"));
+console.log(calculateParkingFee(1, "motorcycle"));
 
 /**
  * Only single value can be returned from a function. If there is need to return multiple values from the function, return an object or an array.
