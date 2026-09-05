@@ -48,13 +48,29 @@ export function calculateParkingFee(hours, vehicleType) {
   //* C) partial hours are rounded up (1.75 hours -> 2 hours)
 
   //? Break it down into sub-problems
-  //* A) calculate the parking fees based on hours and vechile type
+  //* A) round up the hours to the nearest whole number
+  hours = Math.ceil(hours);
 
-  if (hours <= 1 && vehicleType === vechiles.car) return 5;
-  if (hours <= 1 && vehicleType === vechiles.motorcycle) return 3;
-  if (hours <= 1 && vehicleType === vechiles.bus) return 10;
+  //* B) calculate the parking fees based on hours and vechile type, additional each hour's fees is different and will add with first hour of parking till the parked time
+  let parkingFees = 0;
+  let maxParkingFess = 30;
+  if (hours <= 1 && vehicleType === vechiles.car) return (parkingFees = 5);
+  if (hours <= 1 && vehicleType === vechiles.motorcycle)
+    return (parkingFees = 3);
+  if (hours <= 1 && vehicleType === vechiles.bus) return (parkingFees = 10);
+
+  if (hours > 1 && vehicleType === vechiles.car) return (parkingFees += 3);
+  if (hours > 1 && vehicleType === vechiles.motorcycle)
+    return (parkingFees += 2);
+  if (hours > 1 && vehicleType === vechiles.car) return (parkingFees += 7);
+
+  //* C) calculated parking fess will check with daily maximum fess charged capped at 30
+  if (parkingFees > maxParkingFess) parkingFees = 30;
+
+  //* D) return the parking
+  return parkingFees;
 }
-console.log(calculateParkingFee(1, "motorcycle"));
+console.log(calculateParkingFee(3, "motorcycle"));
 
 /**
  * Only single value can be returned from a function. If there is need to return multiple values from the function, return an object or an array.
