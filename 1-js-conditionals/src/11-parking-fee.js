@@ -32,6 +32,8 @@
  * @param {string} vehicleType - "car", "motorcycle", or "bus"
  * @returns {number} Parking fee or -1 for invalid input
  */
+
+/*
 const vechiles = {
   car: "car",
   motorcycle: "motorcycle",
@@ -75,6 +77,39 @@ export function calculateParkingFee(hours, vehicleType) {
 }
 console.log(calculateParkingFee(3, "motorcycle"));
 
+
+*/
 /**
  * Only single value can be returned from a function. If there is need to return multiple values from the function, return an object or an array.
  */
+
+/**
+ * clean code
+ * cover DRY principle
+ */
+
+const vechiles = {
+  car: "car",
+  motorcycle: "motorcycle",
+  bus: "bus",
+};
+
+const rates = {
+  car: { first: 5, extra: 3, max: 30 },
+  motorcycle: { first: 3, extra: 2, max: 18 },
+  bus: { first: 10, extra: 7, max: 60 },
+};
+export function calculateParkingFee(hours, vehicleType) {
+  if (hours <= 0) return -1;
+  if (!vechiles[vehicleType]) return -1;
+
+  hours = Math.ceil(hours);
+  let parkingFees =
+    rates[vehicleType].first + (hours - 1) * rates[vehicleType].extra;
+
+  let maxParkingFess = rates[vehicleType].max;
+
+  if (parkingFees > maxParkingFess) parkingFees = maxParkingFess;
+
+  return parkingFees;
+}
