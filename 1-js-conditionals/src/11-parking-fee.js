@@ -49,25 +49,28 @@ export function calculateParkingFee(hours, vehicleType) {
 
   //? Break it down into sub-problems
   //* A) round up the hours to the nearest whole number
-  hours = Math.ceil(hours);
-
   //* B) calculate the parking fees based on hours and vechile type, additional each hour's fees is different and will add with first hour of parking till the parked time
+  //* C) if hours > 1, it's needed first hour's fixed parking fee and then (extra fees * remaining hours)
+  //* D) calculated parking fess will check with daily maximum fess charged capped at 30
+  //* E) return the parking
+
+  hours = Math.ceil(hours);
   let parkingFees = 0;
-  let maxParkingFess = 30;
-  if (hours <= 1 && vehicleType === vechiles.car) return (parkingFees = 5);
-  if (hours <= 1 && vehicleType === vechiles.motorcycle)
-    return (parkingFees = 3);
-  if (hours <= 1 && vehicleType === vechiles.bus) return (parkingFees = 10);
+  let maxParkingFess = 0;
 
-  if (hours > 1 && vehicleType === vechiles.car) return (parkingFees += 3);
-  if (hours > 1 && vehicleType === vechiles.motorcycle)
-    return (parkingFees += 2);
-  if (hours > 1 && vehicleType === vechiles.car) return (parkingFees += 7);
+  if (vehicleType === vechiles.car) {
+    parkingFees = 5 + (hours - 1) * 3;
+    maxParkingFess = 30;
+  } else if (vehicleType === vechiles.motorcycle) {
+    parkingFees = 3 + (hours - 1) * 2;
+    maxParkingFess = 18;
+  } else if (vehicleType === vechiles.bus) {
+    parkingFees = 10 + (hours - 1) * 7;
+    maxParkingFess = 60;
+  }
 
-  //* C) calculated parking fess will check with daily maximum fess charged capped at 30
-  if (parkingFees > maxParkingFess) parkingFees = 30;
+  if (parkingFees > maxParkingFess) parkingFees = maxParkingFess;
 
-  //* D) return the parking
   return parkingFees;
 }
 console.log(calculateParkingFee(3, "motorcycle"));
