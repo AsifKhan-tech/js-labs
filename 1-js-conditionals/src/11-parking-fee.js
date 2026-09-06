@@ -86,6 +86,7 @@ console.log(calculateParkingFee(3, "motorcycle"));
 /**
  * clean code
  * cover DRY principle
+ * Better readability and maintainability
  */
 
 const vechiles = {
