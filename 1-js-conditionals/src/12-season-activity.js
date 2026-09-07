@@ -30,6 +30,26 @@
  * @param {number} temperature - Current temperature in Celsius
  * @returns {{ season: string, activity: string } | null}
  */
+
+const months = {
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
+  6: 6,
+  7: 7,
+  8: 8,
+  9: 9,
+  10: 10,
+  11: 11,
+  12: 12,
+};
 export function getSeasonActivity(month, temperature) {
-  // Your code here
+  //* Validate input
+  if (!months[month]) return null;
+
+  //? Understand the problem
 }
+
+console.log(getSeasonActivity(21));
