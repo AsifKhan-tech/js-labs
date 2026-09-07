@@ -50,6 +50,59 @@ export function getSeasonActivity(month, temperature) {
   if (!months[month]) return null;
 
   //? Understand the problem
+  //* A) suggest activities based on season and temprature
+
+  //? Break it down into sub-problems
+  //* A) check for the right month and temprature
+  //* B) return an object containing season and activity
+
+  if ((month === 12 || month === 1 || month === 2) && temperature < 0) {
+    return {
+      season: "Winter",
+      activity: "skiing",
+    };
+  } else if ((month === 12 || month === 1 || month === 2) && temperature >= 0) {
+    return {
+      season: "Winter",
+      activity: "ice skating",
+    };
+  } else if ((month === 3 || month === 4 || month === 5) && temperature > 20) {
+    return {
+      season: "Spring",
+      activity: "hiking",
+    };
+  } else if ((month === 3 || month === 4 || month === 5) && temperature <= 20) {
+    return {
+      season: "Spring",
+      activity: "museum visit",
+    };
+  } else if ((month === 6 || month === 7 || month === 8) && temperature > 35) {
+    return {
+      season: "Summer",
+      activity: "swimming",
+    };
+  } else if ((month === 6 || month === 7 || month === 8) && temperature <= 35) {
+    return {
+      season: "Summer",
+      activity: "cycling",
+    };
+  } else if (
+    (month === 9 || month === 10 || month === 11) &&
+    temperature > 15
+  ) {
+    return {
+      season: "Autumn",
+      activity: "nature walk",
+    };
+  } else if (
+    (month === 9 || month === 10 || month === 11) &&
+    temperature <= 15
+  ) {
+    return {
+      season: "Autumn",
+      activity: "reading at a cafe",
+    };
+  }
 }
 
-console.log(getSeasonActivity(21));
+console.log(getSeasonActivity(12, -5));
