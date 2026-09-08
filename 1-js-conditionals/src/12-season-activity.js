@@ -122,8 +122,63 @@ export function getSeason(month) {
   }
 }
 
-export function getSeasonActivity(month, temperature) {
-  if (month < 1 || month > 12) return null;
+const activityRules = {
+  Winter: {
+    threshold: 0,
+    comparision: (temperature, threshold) => temperature < threshold,
+    ifTrue: "skiing",
+    ifFalse: "ice skating",
+  },
 
+  Spring: {
+    threshold: 20,
+    comparision: (temperature, threshold) => temperature > threshold,
+    ifTrue: "hiking",
+    ifFalse: "museum visit",
+  },
+
+  Summer: {
+    threshold: 35,
+    comparision: (temperature, threshold) => temperature > threshold,
+    ifTrue: "swimming",
+    ifFalse: "reading at a cafe",
+  },
+
+  Autumn: {
+    threshold: 15,
+    comparision: (temperature, threshold) => temperature > threshold,
+    ifTrue: "nature walk",
+    ifFalse: "cycling",
+  },
+};
+
+function getActivity(month, temperature) {
   const season = getSeason(month);
+
+  if (!season) {
+    return;
+  }
+
+  //* get the rule for activity
+  const rule = activityRules[season];
+
+  //* return true or false based on temprature
+  const condition = rule.comparision(temperature, rule.threshold);
+
+  //* extract activity
+  const activity = condition ? rule.ifTrue : rule.ifFalse;
+
+  return {
+    season,
+    activity,
+  };
+}
+
+export function getSeasonActivity(month, temperature) {
+  if (month < 1 || month > 12) {
+    return null;
+  }
+
+  getSeason(month);
+  return getActivity(month, temperature);
 }
