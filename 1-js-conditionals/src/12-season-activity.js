@@ -141,20 +141,20 @@ const activityRules = {
     threshold: 35,
     comparision: (temperature, threshold) => temperature > threshold,
     ifTrue: "swimming",
-    ifFalse: "reading at a cafe",
+    ifFalse: "cycling",
   },
 
   Autumn: {
     threshold: 15,
     comparision: (temperature, threshold) => temperature > threshold,
     ifTrue: "nature walk",
-    ifFalse: "cycling",
+    ifFalse: "reading at a cafe",
   },
 };
 
 function getActivity(month, temperature) {
+  //* calling getSeason functon to get the season
   const season = getSeason(month);
-
   if (!season) {
     return;
   }
@@ -179,6 +179,7 @@ export function getSeasonActivity(month, temperature) {
     return null;
   }
 
-  getSeason(month);
   return getActivity(month, temperature);
 }
+
+console.log(getSeasonActivity(1, 10));
