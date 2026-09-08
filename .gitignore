@@ -6,6 +6,7 @@ coverage/
 SOLUTION.md
 solutions/
 
+# I deliberateley ignore them temporarily
 2-js-datatypes-foundation/
 3-js-datatypes-Intermediate/
 4-js-loops/

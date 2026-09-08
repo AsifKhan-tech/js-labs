@@ -31,78 +31,99 @@
  * @returns {{ season: string, activity: string } | null}
  */
 
-const months = {
-  1: 1,
-  2: 2,
-  3: 3,
-  4: 4,
-  5: 5,
-  6: 6,
-  7: 7,
-  8: 8,
-  9: 9,
-  10: 10,
-  11: 11,
-  12: 12,
+// const months = {
+//   1: 1,
+//   2: 2,
+//   3: 3,
+//   4: 4,
+//   5: 5,
+//   6: 6,
+//   7: 7,
+//   8: 8,
+//   9: 9,
+//   10: 10,
+//   11: 11,
+//   12: 12,
+// };
+// export function getSeasonActivity(month, temperature) {
+//   //* Validate input
+//   if (!months[month]) return null;
+
+//   //? Understand the problem
+//   //* A) suggest activities based on season and temprature
+
+//   //? Break it down into sub-problems
+//   //* A) check for the right month and temprature
+//   //* B) return an object containing season and activity
+
+//   if ((month === 12 || month === 1 || month === 2) && temperature < 0) {
+//     return {
+//       season: "Winter",
+//       activity: "skiing",
+//     };
+//   } else if ((month === 12 || month === 1 || month === 2) && temperature >= 0) {
+//     return {
+//       season: "Winter",
+//       activity: "ice skating",
+//     };
+//   } else if ((month === 3 || month === 4 || month === 5) && temperature > 20) {
+//     return {
+//       season: "Spring",
+//       activity: "hiking",
+//     };
+//   } else if ((month === 3 || month === 4 || month === 5) && temperature <= 20) {
+//     return {
+//       season: "Spring",
+//       activity: "museum visit",
+//     };
+//   } else if ((month === 6 || month === 7 || month === 8) && temperature > 35) {
+//     return {
+//       season: "Summer",
+//       activity: "swimming",
+//     };
+//   } else if ((month === 6 || month === 7 || month === 8) && temperature <= 35) {
+//     return {
+//       season: "Summer",
+//       activity: "cycling",
+//     };
+//   } else if (
+//     (month === 9 || month === 10 || month === 11) &&
+//     temperature > 15
+//   ) {
+//     return {
+//       season: "Autumn",
+//       activity: "nature walk",
+//     };
+//   } else if (
+//     (month === 9 || month === 10 || month === 11) &&
+//     temperature <= 15
+//   ) {
+//     return {
+//       season: "Autumn",
+//       activity: "reading at a cafe",
+//     };
+//   }
+// }
+
+// console.log(getSeasonActivity(12, -5));
+
+const seasons = {
+  Winter: [12, 1, 2],
+  Spring: [3, 4, 5],
+  Summer: [6, 7, 8],
+  Autumn: [9, 10, 11],
 };
-export function getSeasonActivity(month, temperature) {
-  //* Validate input
-  if (!months[month]) return null;
 
-  //? Understand the problem
-  //* A) suggest activities based on season and temprature
-
-  //? Break it down into sub-problems
-  //* A) check for the right month and temprature
-  //* B) return an object containing season and activity
-
-  if ((month === 12 || month === 1 || month === 2) && temperature < 0) {
-    return {
-      season: "Winter",
-      activity: "skiing",
-    };
-  } else if ((month === 12 || month === 1 || month === 2) && temperature >= 0) {
-    return {
-      season: "Winter",
-      activity: "ice skating",
-    };
-  } else if ((month === 3 || month === 4 || month === 5) && temperature > 20) {
-    return {
-      season: "Spring",
-      activity: "hiking",
-    };
-  } else if ((month === 3 || month === 4 || month === 5) && temperature <= 20) {
-    return {
-      season: "Spring",
-      activity: "museum visit",
-    };
-  } else if ((month === 6 || month === 7 || month === 8) && temperature > 35) {
-    return {
-      season: "Summer",
-      activity: "swimming",
-    };
-  } else if ((month === 6 || month === 7 || month === 8) && temperature <= 35) {
-    return {
-      season: "Summer",
-      activity: "cycling",
-    };
-  } else if (
-    (month === 9 || month === 10 || month === 11) &&
-    temperature > 15
-  ) {
-    return {
-      season: "Autumn",
-      activity: "nature walk",
-    };
-  } else if (
-    (month === 9 || month === 10 || month === 11) &&
-    temperature <= 15
-  ) {
-    return {
-      season: "Autumn",
-      activity: "reading at a cafe",
-    };
+export function getSeason(month) {
+  for (const [season, months] of Object.entries(seasons)) {
+    if (months.includes(month)) {
+      return season;
+    }
   }
 }
 
-console.log(getSeasonActivity(12, -5));
+export function getSeasonActivity(month, temperature) {
+  if (month < 1 || month > 12) return null;
+
+  const season = getSeason(month);
+}
