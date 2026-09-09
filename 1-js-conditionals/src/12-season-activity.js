@@ -182,4 +182,4 @@ export function getSeasonActivity(month, temperature) {
   return getActivity(month, temperature);
 }
 
-console.log(getSeasonActivity(1, 10));
+// console.log(getSeasonActivity(1, 10));
